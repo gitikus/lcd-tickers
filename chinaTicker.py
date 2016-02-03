@@ -65,5 +65,4 @@ def main():
 	time.sleep(refresh_time)
 
 if __name__ == '__main__':
-    while True:
         main()
