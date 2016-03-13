@@ -38,19 +38,23 @@ def finexLast():
         print e
 
 def main():
-    while True:    
-        data = grabTickData(pair)
-        last = data['last']
-        loanData =  grabLoanData()
-        lowRate = loanData[0]['rate']
-	lowRate = str(float(lowRate) * 100)
-        lcd.clear()
-        lcd.message(pair[4:] +': '+last + '\n' + 'Loan: ' + lowRate +'%')
-        time.sleep(refresh)
-        finex = finexLast()
-        lcd.clear()
-        lcd.message('Finex: ' + finex)
-        time.sleep(refresh)
+    while True:
+        try:
+            data = grabTickData(pair)
+            last = data['last']
+            loanData =  grabLoanData()
+            lowRate = loanData[0]['rate']
+	    lowRate = str(float(lowRate) * 100)
+            lcd.clear()
+            lcd.message(pair[4:] +': '+last + '\n' + 'Loan: ' + lowRate +'%')
+            time.sleep(refresh)
+            finex = finexLast()
+            lcd.clear()
+            lcd.message('Finex: ' + finex)
+            time.sleep(refresh)
+        except Exception as e:
+            lcd.message('ERROR')
+            print 'Error:', e
 
 if __name__ == '__main__':
     main()
